@@ -1,5 +1,3 @@
-import java.util.Scanner; // for reading user input
-
 public class Policy
 {
     //Declare all the variables
