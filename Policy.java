@@ -10,12 +10,10 @@ public class Policy
      */
     public Policy()
     {
-        this.policyNumber = 000000;
+        this.policyNumber = 0;
         this.policyholderAge = 0;
         this.policyholderHeight = 0.0;
         this.policyholderWeight = 0.0;
-        this.bmi = 0.0;
-        this.policyPrice = 0.0;
         this.providerName = "none";
         this.policyholderFirstname = "none";
         this.policyholderLastname = "none";
@@ -39,8 +37,6 @@ public class Policy
         this.policyholderAge = policyholderAge;
         this.policyholderHeight = policyholderHeight;
         this.policyholderWeight = policyholderWeight;
-        this.bmi = bmi;
-        this.policyPrice = policyPrice;
         this.providerName = providerName;
         this.policyholderFirstname = policyholderFirstname;
         this.policyholderLastname = policyholderLastname;
@@ -78,7 +74,7 @@ public class Policy
      * Setter.
      * @param policyholderWeight
      */
-    public void setPolicyolderWeight(double policyholderWeight)
+    public void setPolicyholderWeight(double policyholderWeight)
     {
         this.policyholderWeight = policyholderWeight;
     }
@@ -175,24 +171,6 @@ public class Policy
 
     /**
      * Getter.
-     * @return bmi
-     */
-    public double getBmi()
-    {
-        return bmi;
-    }
-
-    /**
-     * Getter.
-     * @return policyPrice
-     */
-    public double getPolicyPrice()
-    {
-        return policyPrice;
-    }
-
-    /**
-     * Getter.
      * @return providerName
      */
     public String getProviderName()
@@ -213,7 +191,7 @@ public class Policy
      * Getter.
      * @return policyholderLastname
      */
-    public String getpolicyholderLastname()
+    public String getPolicyholderLastname()
     {
         return policyholderLastname;
     }
@@ -229,11 +207,9 @@ public class Policy
 
     /**
      * Calculates BMI.
-     * @param policyholderWeight
-     * @param policyholderHeight
      * @return BMI
      */
-    public double bmiCalcualtor(double policyholderWeight, double policyholderHeight)
+    public double bmiCalcualtor()
     {
         bmi = (policyholderWeight * 703) / ((policyholderHeight) * (policyholderHeight));
         return bmi;
@@ -241,12 +217,9 @@ public class Policy
 
     /**
      * Calculates the price of the insurance policy.
-     * @param policyholderAge
-     * @param smokingStatus
-     * @param bmi
      * @return policyPrice
      */
-    public double policyPriceCalculator(int policyholderAge, String smokingStatus, double bmi)
+    public double policyPriceCalculator()
     {
         final int BASE_FEE = 600;
         final int MAX_YEARS = 50;
@@ -261,7 +234,7 @@ public class Policy
         {
             policyPrice += MAX_YEARS_FEE;
         }
-        if (smokingStatus.equals("smoker"))
+        if (smokingStatus.equalsIgnoreCase("smoker"))
         {
             policyPrice += SMOKER_FEE;
         }
