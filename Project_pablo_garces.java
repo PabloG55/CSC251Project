@@ -44,7 +44,7 @@ public class Project_pablo_garces
         System.out.println("Policyholder's Age: " + policy.getPolicyholderAge());
         System.out.println("Policyholder's Smoking Status: " + policy.getSmokingStatus());
         System.out.printf("Policyholder's Height: %.1f inches\n" , policy.getPolicyholderHeight());
-        System.out.printf("cPolicyholder's Weight: %.1f pounds\n" , policy.getPolicyholderWeight());
+        System.out.printf("Policyholder's Weight: %.1f pounds\n" , policy.getPolicyholderWeight());
         System.out.printf("Policyholder's BMI: %.2f\n" , policy.bmiCalcualtor());
         System.out.printf("Policy Price: $%.2f\n" , policy.policyPriceCalculator());    
         
