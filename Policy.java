@@ -21,7 +21,7 @@ public class Policy
     }
 
     /**
-     * Constructor that accpets arguments.
+     * Constructor that accepets arguments.
      * @param policyNumber
      * @param policyholderAge
      * @param policyholderHeight
@@ -31,7 +31,8 @@ public class Policy
      * @param policyholderLastname
      * @param smokingStatus
      */
-    public Policy(int policyNumber, int policyholderAge, double policyholderHeight, double policyholderWeight, String providerName, String policyholderFirstname, String policyholderLastname, String smokingStatus)
+    public Policy(int policyNumber, int policyholderAge, double policyholderHeight, double policyholderWeight, 
+                  String providerName, String policyholderFirstname, String policyholderLastname, String smokingStatus)
     {
         this.policyNumber = policyNumber;
         this.policyholderAge = policyholderAge;
@@ -221,6 +222,7 @@ public class Policy
      */
     public double policyPriceCalculator()
     {
+        //Declare all the constants.
         final int BASE_FEE = 600;
         final int MAX_YEARS = 50;
         final int MAX_YEARS_FEE = 75;
