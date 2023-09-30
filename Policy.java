@@ -1,16 +1,16 @@
 public class Policy
 {
     //Declare all the variables
-    private int policyNumber, policyholderAge;
+    private int policyholderAge;
     private double policyholderHeight, policyholderWeight, bmi, policyPrice;
-    private String providerName, policyholderFirstname, policyholderLastname, smokingStatus;
+    private String policyNumber, providerName, policyholderFirstname, policyholderLastname, smokingStatus;
 
     /**
      * No-arg constructor that explicitly initializes all instance fields.  
      */
     public Policy()
     {
-        this.policyNumber = 0;
+        this.policyNumber = "";
         this.policyholderAge = 0;
         this.policyholderHeight = 0.0;
         this.policyholderWeight = 0.0;
@@ -31,7 +31,7 @@ public class Policy
      * @param policyholderLastname
      * @param smokingStatus
      */
-    public Policy(int policyNumber, int policyholderAge, double policyholderHeight, double policyholderWeight, 
+    public Policy(String policyNumber, int policyholderAge, double policyholderHeight, double policyholderWeight, 
                   String providerName, String policyholderFirstname, String policyholderLastname, String smokingStatus)
     {
         this.policyNumber = policyNumber;
@@ -48,7 +48,7 @@ public class Policy
      * Setter.
      * @param policyNumber
      */
-    public void setPolicyNumber(int policyNumber)
+    public void setPolicyNumber(String policyNumber)
     {
         this.policyNumber = policyNumber;
     }
@@ -138,7 +138,7 @@ public class Policy
      * Getter.
      * @return policyNumber
      */
-    public int getPolicyNumber()
+    public String getPolicyNumber()
     {
         return policyNumber;
     }
