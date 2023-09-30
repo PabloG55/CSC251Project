@@ -212,8 +212,8 @@ public class Policy
      */
     public double bmiCalcualtor()
     {
-        bmi = (policyholderWeight * 703) / ((policyholderHeight) * (policyholderHeight));
-        return bmi;
+        final double CONVFACTOR = 703;
+        return (policyholderWeight * CONVFACTOR) / ((policyholderHeight) * (policyholderHeight));
     }
 
     /**
@@ -240,15 +240,29 @@ public class Policy
         {
             policyPrice += SMOKER_FEE;
         }
-        if (bmi > MAX_BMI)
+        if (bmiCalcualtor() > MAX_BMI)
         {
-            bmiFee = (bmi - MAX_BMI) * BMI_FEE_CONSTANT;
+            bmiFee = (bmiCalcualtor() - MAX_BMI) * BMI_FEE_CONSTANT;
             policyPrice += bmiFee;
         }
         
         return policyPrice;
     }
 
-
+    
+    public void displayInformation()
+    {
+        //Print all the information.
+        System.out.println("\nPolicy Number: " + policyNumber);
+        System.out.println("Provider Name: " + providerName);
+        System.out.println("Policyholder's First Name: " + policyholderFirstname);
+        System.out.println("Policyholder's Last Name: " + policyholderLastname);
+        System.out.println("Policyholder's Age: " + policyholderAge);
+        System.out.println("Policyholder's Smoking Status: " + smokingStatus);
+        System.out.printf("Policyholder's Height: %.1f inches\n" , policyholderHeight);
+        System.out.printf("Policyholder's Weight: %.1f pounds\n" , policyholderWeight);
+        System.out.printf("Policyholder's BMI: %.2f\n" , bmiCalcualtor());
+        System.out.printf("Policy Price: $%.2f\n" , policyPriceCalculator());
+    }
 
 }
