@@ -249,7 +249,9 @@ public class Policy
         return policyPrice;
     }
 
-    
+    /**
+     * Display all the information.
+     */
     public void displayInformation()
     {
         //Print all the information.

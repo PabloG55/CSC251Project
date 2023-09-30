@@ -52,8 +52,6 @@ public class Project_pablo_garces
         
     }
 
-    
-
     /**
      * Validate the smoking status from the user.
      * @param smokingStatus
