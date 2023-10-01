@@ -2,7 +2,7 @@ public class Policy
 {
     //Declare all the variables
     private int policyholderAge;
-    private double policyholderHeight, policyholderWeight, bmi, policyPrice;
+    private double policyholderHeight, policyholderWeight;
     private String policyNumber, providerName, policyholderFirstname, policyholderLastname, smokingStatus;
 
     /**
@@ -78,24 +78,6 @@ public class Policy
     public void setPolicyholderWeight(double policyholderWeight)
     {
         this.policyholderWeight = policyholderWeight;
-    }
-
-    /**
-     * Setter.
-     * @param bmi
-     */
-    public void setBmi(double bmi)
-    {
-        this.bmi = bmi;
-    }
-
-    /**
-     * Setter.
-     * @param policyPrice
-     */
-    public void setPolicyPrice(double policyPrice)
-    {
-        this.policyPrice = policyPrice;
     }
 
     /**
@@ -230,7 +212,7 @@ public class Policy
         final int MAX_BMI = 35;
         final int BMI_FEE_CONSTANT = 20;
         double bmiFee = 0;
-        policyPrice = BASE_FEE;
+        double policyPrice = BASE_FEE;
 
         //If age > 50 put a fee of $75.
         if (policyholderAge > MAX_YEARS)
