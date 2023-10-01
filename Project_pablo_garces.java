@@ -1,93 +1,80 @@
-import java.util.Scanner; // for reading user input
+import java.util.*; // for reading user input and ArrayList
+import java.io.*; //For IOException and Files
 
 public class Project_pablo_garces
 {
-    private static Scanner scnr = new Scanner(System.in); // Initialize the scanner object
-    public static void main (String[]args)
+    public static void main (String[] args)
     {
-        //Declare all the variables.
-        int policyNumber, policyholderAge;
-        double policyholderHeight, policyholderWeight;
-        String providerName, policyholderFirstname, policyholderLastname, smokingStatus;
-
-        //Get all the information from the user.
-        System.out.print("Please enter the Policy Number: ");
-        policyNumber = scnr.nextInt();
-        scnr.nextLine();
-
-        System.out.print("Please enter the Provider Name: ");
-        providerName = scnr.nextLine();
-
-        System.out.print("Please enter the Policyholder's First Name: ");
-        policyholderFirstname = scnr.nextLine();
-
-        System.out.print("Please enter the Policyholder's Last Name: ");
-        policyholderLastname = scnr.nextLine();
-
-        System.out.print("Please enter the Policyholder's Age: ");
-        policyholderAge = scnr.nextInt();
-        scnr.nextLine();
-
-        System.out.print("Please enter the Policyholder's Smoking Status (smoker/non-smoker): ");
-        smokingStatus = scnr.nextLine();
-        validateSmokingStatus(smokingStatus);
-
-        System.out.print("Please enter the Policyholder's Height (in inches): ");
-        policyholderHeight = scnr.nextDouble();
-        validatePolicyholderHeight(policyholderHeight);
-
-        System.out.print("Please enter the Policyholder's Weight (in pounds): ");
-        policyholderWeight = scnr.nextDouble();
-        validatePolicyholderWeight(policyholderWeight);    
-
-        //Create an instance of the Policy class.
-        Policy policy = new Policy(policyNumber, policyholderAge, policyholderHeight, policyholderWeight,
-                                   providerName, policyholderFirstname, policyholderLastname, smokingStatus);
-
-        //put a blank line before the output
-        System.out.println();
-
-        policy.displayInformation();
+        //Initialize try to later catch any problem.
+        try
+        {
+            //Declare the file and the scanner object.
+            File policyInfo = new File("PolicyInformation.txt");
+            Scanner inputFile = new Scanner(policyInfo);
             
+            
+            //Declare and initialize all the variables.
+            int policyholderAge = 0, smokers = 0, nonSmokers = 0;
+            double policyholderHeight = 0.0, policyholderWeight = 0.0;
+            String policyNumber = "", providerName = "", policyholderFirstname = "", policyholderLastname = "", smokingStatus = "", fileInput = "";
+            
+            //Initialize the ArrayList.
+            ArrayList<Policy> policies = new ArrayList<Policy>();
+
+            //Initialize the while loop to check if the docuement continues.
+            while(inputFile.hasNext())
+            {
+                //Read all the inputs of the document
+                policyNumber = inputFile.nextLine();
+
+                providerName = inputFile.nextLine();
+
+                policyholderFirstname = inputFile.nextLine();
+
+                policyholderLastname = inputFile.nextLine();
+
+                fileInput = inputFile.nextLine();
+                policyholderAge = Integer.parseInt(fileInput);
+
+                smokingStatus = inputFile.nextLine();
+
+                fileInput = inputFile.nextLine();
+                policyholderHeight = Double.parseDouble(fileInput);
+
+                fileInput = inputFile.nextLine();
+                policyholderWeight = Double.parseDouble(fileInput);
+
+                //Skip the blank line if we have not reached the end of the file.
+                if(inputFile.hasNext())
+                { 
+                inputFile.nextLine();
+                }
+
+                //Create an instance of the Policy class.
+                Policy p = new Policy(policyNumber, policyholderAge, policyholderHeight, policyholderWeight,
+                                    providerName, policyholderFirstname, policyholderLastname, smokingStatus);
+                
+                //Add the policy object to the ArrayList.
+                policies.add(p);
+            }//Close loop.
+
+            //Close the file.
+            inputFile.close();
+            
+            //Display all the smokers and non-smokers.
+            System.out.println();
+            System.out.println("The number of policies with a smoker is: " + smokers);
+            System.out.println("The number of policies with a non-smoker is: " + nonSmokers);
+            System.out.println();
+
+        }//Close the "try" block of code.
         
-    }
-
-    /**
-     * Validate the smoking status from the user.
-     * @param smokingStatus
-     */
-    public static void validateSmokingStatus(String smokingStatus)
-    {
-         while (!(smokingStatus.equalsIgnoreCase("smoker") || smokingStatus.equalsIgnoreCase("non-smoker")))
+        //Catch any IOException to deal with it.
+        catch(IOException ex)
         {
-            System.out.print("Please enter smoker or non-smoker: ");
-            smokingStatus = scnr.nextLine();
+            //use the getMessage method of the exception we "caught" to print out it's message about what went wrong.
+            System.out.println("Something went wrong reading the file: " + ex.getMessage());
         }
-    }
-
-    /**
-     * Validate the policy holder height from the user.
-     * @param policyholderHeight
-     */
-    public static void validatePolicyholderHeight(double policyholderHeight)
-    {
-        while (policyholderHeight <= 0)
-        {
-            System.out.print("Please enter a valid number: ");
-            policyholderHeight = scnr.nextDouble();
-        }
-    }
-
-    /**
-     * Validate the policy holder height from the user.
-     * @param policyholderWeight
-     */
-    public static void validatePolicyholderWeight(double policyholderWeight)
-    {
-        while (policyholderWeight <= 0)
-        {
-            System.out.print("Please enter a valid number: ");
-            policyholderWeight = scnr.nextDouble();
-        }
-    }
-}
+        
+    }//Close main.
+}//Close the class container.
