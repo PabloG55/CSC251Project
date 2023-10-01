@@ -232,14 +232,17 @@ public class Policy
         double bmiFee = 0;
         policyPrice = BASE_FEE;
 
+        //If age > 50 put a fee of $75.
         if (policyholderAge > MAX_YEARS)
         {
             policyPrice += MAX_YEARS_FEE;
         }
+        //If smoker put a fee of $100.
         if (smokingStatus.equalsIgnoreCase("smoker"))
         {
             policyPrice += SMOKER_FEE;
         }
+        //If bmi > 20 put a a fee depending of bmi.
         if (bmiCalcualtor() > MAX_BMI)
         {
             bmiFee = (bmiCalcualtor() - MAX_BMI) * BMI_FEE_CONSTANT;
