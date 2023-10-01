@@ -37,6 +37,14 @@ public class Project_pablo_garces
                 policyholderAge = Integer.parseInt(fileInput);
 
                 smokingStatus = inputFile.nextLine();
+                //Check if the policy is of a smoker or not.
+                if(smokingStatus.equalsIgnoreCase("smoker"))
+                {
+                    smokers++;
+                } else
+                {
+                    nonSmokers++;    
+                }
 
                 fileInput = inputFile.nextLine();
                 policyholderHeight = Double.parseDouble(fileInput);
@@ -60,7 +68,13 @@ public class Project_pablo_garces
 
             //Close the file.
             inputFile.close();
-            
+
+            //Use a for loop to get each object of the arraylist  and display all the information.
+            for(int i = 0; i < policies.size(); i++)
+            {
+                policies.get(i).displayInformation();    
+            }
+
             //Display all the smokers and non-smokers.
             System.out.println();
             System.out.println("The number of policies with a smoker is: " + smokers);
