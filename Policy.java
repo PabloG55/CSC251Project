@@ -1,47 +1,19 @@
-public class Policy
+public class Policy 
 {
-    //Declare all the variables
-    private int policyholderAge;
-    private double policyholderHeight, policyholderWeight;
-    private String policyNumber, providerName, policyholderFirstname, policyholderLastname, smokingStatus;
+    // Declare all the variables
+    private String policyNumber, providerName;
+    private PolicyHolder policyHolder; // Instance of the policy holder class.
 
     /**
-     * No-arg constructor that explicitly initializes all instance fields.  
-     */
-    public Policy()
-    {
-        this.policyNumber = "";
-        this.policyholderAge = 0;
-        this.policyholderHeight = 0.0;
-        this.policyholderWeight = 0.0;
-        this.providerName = "none";
-        this.policyholderFirstname = "none";
-        this.policyholderLastname = "none";
-        this.smokingStatus = "none";
-    }
-
-    /**
-     * Constructor that accepets arguments.
+     * Constructor that accepts arguments.
      * @param policyNumber
-     * @param policyholderAge
-     * @param policyholderHeight
-     * @param policyholderWeight
      * @param providerName
-     * @param policyholderFirstname
-     * @param policyholderLastname
-     * @param smokingStatus
+     * @param pHolder - an instance of the PolicyHolder class
      */
-    public Policy(String policyNumber, int policyholderAge, double policyholderHeight, double policyholderWeight, 
-                  String providerName, String policyholderFirstname, String policyholderLastname, String smokingStatus)
-    {
+    public Policy(String policyNumber, String providerName, PolicyHolder policyHolder) {
         this.policyNumber = policyNumber;
-        this.policyholderAge = policyholderAge;
-        this.policyholderHeight = policyholderHeight;
-        this.policyholderWeight = policyholderWeight;
         this.providerName = providerName;
-        this.policyholderFirstname = policyholderFirstname;
-        this.policyholderLastname = policyholderLastname;
-        this.smokingStatus = smokingStatus;
+        this.policyHolder = new PolicyHolder(policyHolder); // Use the copy constructor of PolicyHolder
     }
 
     /**
@@ -55,65 +27,16 @@ public class Policy
 
     /**
      * Setter.
-     * @param policyholderAge
-     */
-    public void setPolicyholderAge(int policyholderAge)
-    {
-        this.policyholderAge = policyholderAge;
-    }
-
-    /**
-     * Setter.
-     * @param policyholderHeight
-     */
-    public void setPolicyholderHeight(double policyholderHeight)
-    {
-        this.policyholderHeight = policyholderHeight;
-    }
-
-    /**
-     * Setter.
-     * @param policyholderWeight
-     */
-    public void setPolicyholderWeight(double policyholderWeight)
-    {
-        this.policyholderWeight = policyholderWeight;
-    }
-
-    /**
-     * Setter.
      * @param providerName
      */
     public void setProviderName(String providerName)
     {
         this.providerName = providerName;
     }
-
-    /**
-     * Setter.
-     * @param policyholderFirstname
-     */
-    public void setPolicyholderFirstname(String policyholderFirstname)
+    
+    public void setPolicyHolder(PolicyHolder policyHolder)
     {
-        this.policyholderFirstname = policyholderFirstname;
-    }
-
-    /**
-     * Setter.
-     * @param policyholderLastname
-     */
-    public void setPolicyholderLastname(String policyholderLastname)
-    {
-        this.policyholderLastname = policyholderLastname;
-    }
-
-    /**
-     * Setter.
-     * @param smokingStatus
-     */
-    public void setSmokingStatus(String smokingStatus)
-    {
-        this.smokingStatus = smokingStatus;
+        this.policyHolder = new PolicyHolder(policyHolder);
     }
 
     /**
@@ -127,65 +50,11 @@ public class Policy
 
     /**
      * Getter.
-     * @return policyholderAge
-     */
-    public int getPolicyholderAge()
-    {
-        return policyholderAge;
-    }
-
-    /**
-     * Getter.
-     * @return policyholderHeight
-     */
-    public double getPolicyholderHeight()
-    {
-        return policyholderHeight;
-    }
-
-    /**
-     * Getter.
-     * @return policyholderWeight
-     */
-    public double getPolicyholderWeight()
-    {
-        return policyholderWeight;
-    }
-
-    /**
-     * Getter.
      * @return providerName
      */
     public String getProviderName()
     {
         return providerName;
-    }
-
-    /**
-     * Getter.
-     * @return policyholderFirstname
-     */
-    public String getPolicyholderFirstname()
-    {
-        return policyholderFirstname;
-    }
-
-    /**
-     * Getter.
-     * @return policyholderLastname
-     */
-    public String getPolicyholderLastname()
-    {
-        return policyholderLastname;
-    }
-
-    /**
-     * Getter.
-     * @return smokingStatus
-     */
-    public String getSmokingStatus()
-    {
-        return smokingStatus;
     }
 
     /**
@@ -195,7 +64,7 @@ public class Policy
     public double bmiCalcualtor()
     {
         final double CONVFACTOR = 703;
-        return (policyholderWeight * CONVFACTOR) / ((policyholderHeight) * (policyholderHeight));
+        return (policyHolder.getPolicyholderWeight() * CONVFACTOR) / ((policyHolder.getPolicyholderHeight()) * (policyHolder.getPolicyholderHeight()));
     }
 
     /**
@@ -215,12 +84,12 @@ public class Policy
         double policyPrice = BASE_FEE;
 
         //If age > 50 put a fee of $75.
-        if (policyholderAge > MAX_YEARS)
+        if (policyHolder.getPolicyholderAge() > MAX_YEARS)
         {
             policyPrice += MAX_YEARS_FEE;
         }
         //If smoker put a fee of $100.
-        if (smokingStatus.equalsIgnoreCase("smoker"))
+        if (policyHolder.getSmokingStatus().equalsIgnoreCase("smoker"))
         {
             policyPrice += SMOKER_FEE;
         }
@@ -233,23 +102,4 @@ public class Policy
         
         return policyPrice;
     }
-
-    /**
-     * Display all the information.
-     */
-    public void displayInformation()
-    {
-        //Print all the information.
-        System.out.println("\nPolicy Number: " + policyNumber);
-        System.out.println("Provider Name: " + providerName);
-        System.out.println("Policyholder's First Name: " + policyholderFirstname);
-        System.out.println("Policyholder's Last Name: " + policyholderLastname);
-        System.out.println("Policyholder's Age: " + policyholderAge);
-        System.out.println("Policyholder's Smoking Status: " + smokingStatus);
-        System.out.printf("Policyholder's Height: %.1f inches\n" , policyholderHeight);
-        System.out.printf("Policyholder's Weight: %.1f pounds\n" , policyholderWeight);
-        System.out.printf("Policyholder's BMI: %.2f\n" , bmiCalcualtor());
-        System.out.printf("Policy Price: $%.2f\n" , policyPriceCalculator());
-    }
-
 }
