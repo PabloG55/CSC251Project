@@ -1,5 +1,6 @@
 public class Policy 
 {
+    private static int instanceCount = 0;
     // Declare all the variables
     private String policyNumber, providerName;
     private PolicyHolder policyHolder; // Instance of the policy holder class.
@@ -14,6 +15,7 @@ public class Policy
         this.policyNumber = policyNumber;
         this.providerName = providerName;
         this.policyHolder = new PolicyHolder(policyHolder); // Use the copy constructor of PolicyHolder
+        instanceCount++;
     }
 
     /**
@@ -61,6 +63,14 @@ public class Policy
         return providerName;
     }
 
+    /**
+     * Getter.
+     * @return Instance count
+     */
+    public int getInstanceCount()
+    {
+        return instanceCount;
+    }
     /**
      * Calculates BMI.
      * @return BMI
@@ -115,8 +125,8 @@ public class Policy
         return String.format("\nPolicy Number: " + policyNumber +
                             "\nProvider Name: " + providerName +
                             policyHolder.toString() +
-                            "\nPolicyholder's BMI: %.2f\n" +
-                            "\nPolicy Price: $%.2f\n" , bmiCalcualtor(), policyPriceCalculator());
+                            "\nPolicyholder's BMI: %.2f" +
+                            "\nPolicy Price: $%.2f" , bmiCalcualtor(), policyPriceCalculator());
     }
 
 }
