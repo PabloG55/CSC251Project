@@ -8,7 +8,7 @@ public class Policy
      * Constructor that accepts arguments.
      * @param policyNumber
      * @param providerName
-     * @param pHolder - an instance of the PolicyHolder class
+     * @param policyHolder - an instance of the PolicyHolder class
      */
     public Policy(String policyNumber, String providerName, PolicyHolder policyHolder) {
         this.policyNumber = policyNumber;
@@ -34,6 +34,10 @@ public class Policy
         this.providerName = providerName;
     }
     
+    /**
+     * Setter.
+     * @param policyHolder
+     */
     public void setPolicyHolder(PolicyHolder policyHolder)
     {
         this.policyHolder = new PolicyHolder(policyHolder);
@@ -102,4 +106,17 @@ public class Policy
         
         return policyPrice;
     }
+
+    /**
+     * Display all the information.
+     */
+    public String toString()
+    {
+        return String.format("\nPolicy Number: " + policyNumber +
+                            "\nProvider Name: " + providerName +
+                            policyHolder.toString() +
+                            "\nPolicyholder's BMI: %.2f\n" +
+                            "\nPolicy Price: $%.2f\n" , bmiCalcualtor(), policyPriceCalculator());
+    }
+
 }
