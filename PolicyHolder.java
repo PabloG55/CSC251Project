@@ -146,7 +146,16 @@ public class PolicyHolder
     {
         return smokingStatus;
     }
-
+    
+    public String toString()
+    {
+        return String.format("\nPolicyholder's First Name: " + policyholderFirstname +
+                            "\nPolicyholder's Last Name: " + policyholderLastname +
+                            "\nPolicyholder's Age: " + policyholderAge + 
+                            "\nPolicyholder's Smoking Status: " + smokingStatus +
+                            "\nPolicyholder's Height: %.1f inches"  +
+                            "\nPolicyholder's Weight: %.1f pounds" , policyholderHeight, policyholderWeight);
+    }
     
 
 
