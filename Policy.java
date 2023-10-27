@@ -14,7 +14,7 @@ public class Policy
     public Policy(String policyNumber, String providerName, PolicyHolder policyHolder) {
         this.policyNumber = policyNumber;
         this.providerName = providerName;
-        this.policyHolder = new PolicyHolder(policyHolder); // Use the copy constructor of PolicyHolder
+        this.policyHolder = new PolicyHolder(policyHolder); //we use the copy contructor of the Policy class to avoid security holes
         instanceCount++;
     }
 
