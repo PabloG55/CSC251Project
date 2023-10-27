@@ -58,9 +58,11 @@ public class Project_pablo_garces
                 inputFile.nextLine();
                 }
 
+                PolicyHolder policyHolder = new PolicyHolder(policyholderAge, policyholderHeight, policyholderWeight,
+                                                            policyholderFirstname, policyholderLastname, smokingStatus);
+
                 //Create an instance of the Policy class.
-                Policy p = new Policy(policyNumber, policyholderAge, policyholderHeight, policyholderWeight,
-                                    providerName, policyholderFirstname, policyholderLastname, smokingStatus);
+                Policy p = new Policy(policyNumber, providerName, policyHolder);
                 
                 //Add the policy object to the ArrayList.
                 policies.add(p);
@@ -72,11 +74,12 @@ public class Project_pablo_garces
             //Use a for loop to get each object of the arraylist  and display all the information.
             for(int i = 0; i < policies.size(); i++)
             {
-                policies.get(i).displayInformation();    
+                System.out.println(policies.get(i));    
             }
 
             //Display all the smokers and non-smokers.
             System.out.println();
+            System.out.println("There were " + policies.get(0).getInstanceCount() +" Policy objects created.");            
             System.out.println("The number of policies with a smoker is: " + smokers);
             System.out.println("The number of policies with a non-smoker is: " + nonSmokers);
             System.out.println();
